@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (http://rvm.io)
+ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -14,6 +14,9 @@ set :domain, '84.19.182.147'
 set :deploy_to, '/var/www/mina'
 set :repository, 'git@github.com:lucacanducci/mina.git'
 set :branch, 'master'
+
+# The rails environment for deployment
+#set :rails_env, 'production'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
@@ -32,6 +35,7 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+  invoke :'rvm:use[ruby-2.1.0-p0@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
